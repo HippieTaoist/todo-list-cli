@@ -16,11 +16,13 @@ let incArr = ['Seed Incomplete', 'There is Always something'];
 let comArr = ['Seed Complete', 'one two Three'];
 let viewListLocator = 0;
 let editListLocator = 0;
+let removeEditListLocator = 0;
 let locator = 0;
 let runProg = 1;
 let counter = 0;
 let edit = 0;
 let completedLists = [];
+let remMe = 1;
 
 let listName = 'ENTER LIST NAME';
 let currentList = [listName];
@@ -49,24 +51,32 @@ while (runProg === 1) {
         console.log('(5) - Exit The TO-DOer');
         console.log('');
         locator = Number(prompt('Enter you numerical choice here: '));
-        console.log(typeof locator)
+        console.clear();
     }
 
     /////////////////////////// VIEW ITEMS////////////////////////////////
     while (locator === 1) {
-        //console.clear();
-        console.log('');
-        console.log('Welcome to your list');
-        console.log('');
-        console.log('View Selection: ');
-        console.log('(1) - All');
-        console.log('(2) - Incomplete');
-        console.log('(3) - Completed');
-        console.log('(4) <===  Return to Main Menu')
-        viewListLocator = Number(prompt('View Selection: '));
+        ////////////VIEW - Menu
+        if (viewListLocator === 0) {
 
 
-        //////////LIST - All
+            console.log('');
+            console.log('Welcome to your list');
+            console.log('');
+            console.log('View Selection: ');
+            console.log('(1) - All');
+            console.log('(2) - Incomplete');
+            console.log('(3) - Completed');
+            console.log('(4) <===  Return to Main Menu')
+            viewListLocator = Number(prompt('View Selection: '));
+            if (viewListLocator === 4) {
+                viewListLocator = 5;
+            }
+            console.clear();
+        }
+
+
+        //////////Menu - All
         if (viewListLocator === 1) {
             //console.clear();
 
@@ -86,6 +96,7 @@ while (runProg === 1) {
             for (let item of comArr) {
                 console.log(item);
             }
+            viewListLocator = 0;
         }
         //////////VIEW - Incomplete
         if (viewListLocator === 2) {
@@ -102,6 +113,8 @@ while (runProg === 1) {
                 console.log(item);
             }
 
+
+            viewListLocator = 0;
         }
         //////////VIEW - Complete
         if (viewListLocator === 3) {
@@ -118,6 +131,7 @@ while (runProg === 1) {
                 console.log(item);
             }
 
+            viewListLocator = 0;
         }
 
         //////////VIEW ==> View Menu
@@ -125,7 +139,7 @@ while (runProg === 1) {
             //console.clear();
 
             locator = 1;
-            listLocator = 0;
+            viewListLocator = 0;
         }
         //////////VIEW ==> Main Menu
         if (viewListLocator === 5) {
@@ -139,10 +153,10 @@ while (runProg === 1) {
     }
     ////////////////////////// EDIT ITEMS/////////////////////////////////
     while (locator === 2) {
-        listLocator = 0;
+        // editListLocator = 0;
         counter = 0;
         //Add New Items Menu
-        if (listLocator === 0) {
+        if (editListLocator === 0) {
             //console.clear();
 
             console.log('In this section we EDIT items to your list.')
@@ -152,156 +166,172 @@ while (runProg === 1) {
             console.log('(2) - REMOVE from your list');
             console.log('(3) - Clear list');
             // console.log('(4) - Create new list');
-            listLocator = Number(prompt('What is your numerical selection?'));
+            editListLocator = Number(prompt('What is your numerical selection?'));
+            console.clear();
         }
 
         //Add Items Selection
-        if (listLocator === 1) {
-            addMore = 1;
-            while (addMore === 1) {
-                //console.clear();
+        if (editListLocator === 1) {
+            // addMore = 1;
+            // while (addMore === 1) {
+            //console.clear();
 
-                //Gather items in String from user
-                console.log('');
-                incArr.push(prompt('What is the new items you would like to add?'));
+            //Gather items in String from user
+            console.log('');
+            incArr.push(prompt('Please Enter Your New To-Do: '));
 
-                //Provide update list with new item on it
-                //console.clear();
-                console.log('');
-                console.log('Here is an updated list of your Incomplete Items:');
-                console.log('');
+            //Provide update list with new item on it
+            //console.clear();
+            console.log('');
+            console.log('Here is an updated list of your Incomplete Items:');
+            console.log('');
 
-                // List Incomplete Items
-                for (let c of incArr) {
-                    console.log(c);
-                }
-                console.log('');
-
-                // Menu
-                console.log('(1) - ADD Menu');
-                console.log('(2) - REMOVE Menu');
-                console.log('(3) - MAIN Menu');
-                console.log('');
-                counter = Number(prompt('Add | Remove | Main'));
-                if (counter === 1) {
-                    listLocator = 1;
-                    addMore = 1;
-                }
-                if (counter === 2) {
-                    listLocator = 2;
-                    addMore = -1;
-                }
-                if (counter === 3) {
-
-                    locator = 0;
-                    listLocator = 0;
-                    addMore = 0;
-                }
+            // List Incomplete Items
+            for (let c of incArr) {
+                console.log(c);
             }
+            console.log('');
+            editListLocator = 0;
         }
 
         //Remove Items Selection
-        if (listLocator === 2)
-            while (addMore === -1) {
-                //console.clear();
+        if (editListLocator === 2) {
+            console.log('');
+            console.log('REMOVE From: Completed | Incomplete');
+            console.log('You may also CLEAR a list?');
+            console.log('');
+            console.log('(1) - COMPLETED List');
+            console.log('(2) - INCOMPLETE List');
+            console.log('(3) - CLEAR a List');
+            console.log('(4) - EDIT Menu');
+            console.log('(5) - MAIN Menu');
+            removeEditListLocator = Number(prompt('Selection:  '));
+            console.clear();
+            //Display | REMOVE from list of completed items
+            if (removeEditListLocator === 1) {
 
-                //Remove | Clear items menu
+                //List Completed Items In Current List
+                console.log('Here are your Completed Items:');
                 console.log('');
-                console.log('REMOVE items from Completed Lists, Incomplete Lists or Clear A List Entirely?');
-                console.log('(1) - Completed Lists');
-                console.log('(2) - Incomplete Lists');
-                console.log('(3) - Clear A List');
-                counter = Number(prompt('Remove Item Selection:  '));
+                //List Completed Items
+                remMe = 1;
+                for (let c of comArr) {
 
-                //Display list of completed items
-                if (counter === 1) {
-                    //console.clear();
+                    console.log('(', remMe, ') - ', c)
+                    remMe++
+                }
 
-                    //List Completed Items In Current List
-                    console.log('Here are your Completed Items on CURRENT (', listName, ') :');
-                    for (let c of comArr) {
-                        let remMe = 1;
-                        console.log(remMe, c)
-                        remMe++
-                    }
+                let strRem = Number(prompt('Remove Which To-Do: '));
+                console.clear();
 
-                    // User Options
-                    console.log('');
-                    console.log('REMOVE from CURRENT (', listName, ') or alternate list');
-                    console.log('(1) - CURRENT');
-                    console.log('(2) - ALTERNATE');
-                    console.log('(3) - REMOVE Menu');
-                    console.log('(4) - MAIN Menu');
+                //Give updated list of completed
+                comArr.splice(strRem - 1, 1);
+                console.log('')
+                console.log('Updated Completed List: ')
+                remMe = 1;
+                for (let c of comArr) {
 
-                    // Ternary Menu Option 'else' end at Remove Menu
-                    counter = Number(prompt('Selection: ')) === 1 ? listLocator = 21 :
-                        2 ? listLocator = 22 :
-                        3 ? listLocator = 2 :
-                        4 ? listLocator = 0 :
-                        listLocator = 2;
-
-                    //Proceed to remove from current list
-                    if (counter === 21) {
-                        console.clear
-
-                        console.log('');
-                        //List Completed Items In Current List
-                        console.log('Here are your Completed Items on CURRENT (', listName, ') List: ');
-                        let tempRemArr = [];
-                        for (let c of comArr) {
-                            let remMe = 1;
-                            console.log(remMe, c)
-                            tempRemArr.push(remMe, c)
-                            remMe++
-
-                        }
-                        console.log(tempRemArr)
-
-
-
-                    }
-
-
-
-
-                    console.log('');
-                    console.log('Here is an updated list of your Incomplete Items:');
-                    console.log('');
-                    // List Incomplete Items
-                    for (let c of incArr) {
-                        console.log(c);
-                    }
-                    console.log('');
-
-                    //Setup Menu
-                    console.log('(1) - Add Some....?');
-                    console.log('(2) - Remove Some....?');
-                    console.log('(3) - Main Menu');
-                    console.log('');
-                    counter = Number(prompt('Would you like to add more'));
-                    if (counter === 1) {
-                        listLocator = 1;
-                        addMore = 1;
-                    }
-                    if (counter === 2) {
-                        listLocator = 2;
-                        addMore = -1;
-                    }
-                    if (counter === 3) {
-
-                        locator = 0;
-                        listLocator = 0;
-                        addMore = 0;
-                    }
+                    console.log(remMe, c)
+                    remMe++
 
                 }
+                removeEditListLocator = 0;
+
             }
+
+            //Display | REMOVE from list of incomplete items
+            if (removeEditListLocator === 2) {
+                remMe = 1;
+                //List Completed Items In Current List
+                console.log('Here are your Incomplete Items:');
+                console.log('');
+                //List Completed Items
+                for (let c of incArr) {
+                    console.log('(', remMe, ') - ', c)
+                    remMe++
+                }
+
+                let strRem = Number(prompt('Remove Which To-Do: '));
+                console.clear();
+
+                //Give updated list of completed
+                incArr.splice(strRem - 1, 1);
+                console.log('')
+                console.log('Updated Incomplete Items List: ')
+                remMe = 1;
+                for (let c of incArr) {
+                    console.log(remMe, c)
+                    remMe++
+
+                }
+                removeEditListLocator = 0;
+            }
+
+            // Clear Desired List
+            //Display | REMOVE from list of incomplete items
+            if (removeEditListLocator === 3) {
+                remMe = 1;
+                //List Completed Items In Current List
+                console.log('Here is your Complete Items List:');
+                console.log('');
+                //List Completed Items
+                for (let c of comArr) {
+                    console.log('(', remMe, ') - ', c)
+                    remMe++
+                }
+                console.log('');
+                console.log('');
+
+                //Give updated list of Incomplete
+                console.log('');
+                console.log('Here is your Incomplete Items List: ')
+                remMe = 1;
+                for (let c of incArr) {
+                    console.log(remMe, c)
+                    remMe++
+
+                }
+                console.log('(1) - Completed List');
+                console.log('(2) - Incomplete list');
+                let clear = Number(prompt('Which List Shall We Clear?'));
+                console.clear();
+
+                console.log('(y) - For Yes I am sure!, Burn it!');
+                console.log('(n) - I fear I will forget something. Forget it!');
+                let affirm = prompt('Are you sure you want to clear this list. The effect are unrecovealble... They will be lost in the sea of ones and zeros for ever!');
+                console.clear();
+                if (affirm === 'y') {
+                    if (clear === 1) {
+                        comArr = [];
+                        console.log('Updated Completed List:');
+                        console.log(comArr);
+                    }
+                    if (clear === 2) {
+                        comArr = [];
+                        console.log('Updated Incomplete List:');
+                        console.log(incArr);
+                    }
+                }
+                if (affirm = 'n') {
+                    removeEditListLocator = 0;
+                }
+
+
+                removeEditListLocator = 0;
+            }
+        }
+
+
+
+
 
     }
 
-
-
 }
+
+
+
+
 
 
 
