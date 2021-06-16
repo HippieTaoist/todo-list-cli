@@ -17,6 +17,7 @@ let comArr = ['Seed Complete', 'one two Three'];
 let viewListLocator = 0;
 let editListLocator = 0;
 let removeEditListLocator = 0;
+let completListLocator = 0;
 let locator = 0;
 let runProg = 1;
 let counter = 0;
@@ -324,6 +325,61 @@ while (runProg === 1) {
 
 
 
+
+    }
+    /////////////////////////COMPLETE ITEMS//////////////////////////////
+    while (locator === 3) {
+
+        if (completListLocator === 0) {
+            console.log('Welcome to the');
+            console.log('Completion Menu');
+            console.log('Would you like to:');
+            console.log('(1) - Complete An Item');
+            console.log('(2) - View Incomplete Items');
+            console.log('(3) - Return to Main Menu');
+            completListLocator = Number(prompt('Selection: '));
+        }
+        if (completListLocator === 1) {
+            console.log('Here is your Incompleted List');
+
+            //List Incomplete
+            remMe = 1;
+            for (let c of incArr) {
+                console.log('(', remMe, ') - ', c)
+                remMe++
+            }
+
+            let comTemp = incArr.splice(Number(prompt('Selection: ')) - 1, 1);
+            comArr.push(comTemp[0]);
+            console.clear();
+
+            console.log('Updated Completed List');
+            remMe = 1
+            for (let c of comArr) {
+                console.log('(', remMe, ') - ', c)
+                remMe++
+            }
+            completListLocator = 0;
+        }
+
+        if (completListLocator === 2) {
+            //List Incomplete
+            remMe = 1;
+            for (let c of incArr) {
+                console.log('(', remMe, ') - ', c)
+                remMe++
+            }
+            completListLocator = 0;
+
+        }
+
+        if (completListLocator === 3) {
+            locator = 0;
+            completListLocator = 0;
+        }
+
+
+        console.log('');
 
     }
 
